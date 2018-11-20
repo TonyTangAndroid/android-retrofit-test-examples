@@ -1,4 +1,5 @@
 apply plugin: 'com.android.application'
+apply from: 'sign.gradle'
 
 android {
     compileSdkVersion 28
@@ -13,12 +14,6 @@ android {
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
     }
-    buildTypes {
-        release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-        }
-    }
     packagingOptions {
         exclude 'META-INF/LICENSE'
         exclude 'META-INF/NOTICE'
@@ -30,6 +25,7 @@ dependencies {
     implementation 'com.android.support:appcompat-v7:28.0.0'
     implementation 'com.jakewharton.timber:timber:4.7.1'
 
+    debugImplementation('com.squareup.okhttp3:mockwebserver:3.12.0')
 
     implementation 'com.squareup.retrofit2:retrofit:2.5.0'
     implementation 'com.squareup.retrofit2:converter-jackson:2.5.0'
