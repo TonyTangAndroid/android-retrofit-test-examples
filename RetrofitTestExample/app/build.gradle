@@ -19,6 +19,18 @@ android {
         exclude 'META-INF/NOTICE'
     }
 
+    flavorDimensions "version"
+    
+    productFlavors {
+        mock {
+            applicationIdSuffix = ".mock"
+            dimension "version"
+        }
+        prod{
+            dimension "version"
+        }
+    }
+
 }
 
 dependencies {
