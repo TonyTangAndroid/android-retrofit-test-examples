@@ -1,12 +1,12 @@
 package za.co.riggaroo.retrofittestexample;
 
-import android.test.InstrumentationTestCase;
-import android.test.suitebuilder.annotation.SmallTest;
-
-
 import junit.framework.Assert;
 
+import org.junit.Before;
+import org.junit.Test;
+
 import java.lang.annotation.Annotation;
+
 import okhttp3.OkHttpClient;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -24,13 +24,12 @@ import za.co.riggaroo.retrofittestexample.pojo.QuoteOfTheDayResponse;
  * @author rebeccafranks
  * @since 15/10/23.
  */
-public class QuoteOfTheDayMockAdapterTest extends InstrumentationTestCase {
+public class QuoteOfTheDayMockAdapterTest  {
     private MockRetrofit mockRetrofit;
     private Retrofit retrofit;
 
-    @Override
+    @Before
     public void setUp() throws Exception {
-        super.setUp();
         retrofit = new Retrofit.Builder().baseUrl("http://test.com")
                 .client(new OkHttpClient())
                 .addConverterFactory(JacksonConverterFactory.create())
@@ -44,7 +43,7 @@ public class QuoteOfTheDayMockAdapterTest extends InstrumentationTestCase {
     }
 
 
-    @SmallTest
+    @Test
     public void testRandomQuoteRetrieval() throws Exception {
         BehaviorDelegate<QuoteOfTheDayRestService> delegate = mockRetrofit.create(QuoteOfTheDayRestService.class);
         QuoteOfTheDayRestService mockQodService = new MockQuoteOfTheDayService(delegate);
@@ -60,7 +59,7 @@ public class QuoteOfTheDayMockAdapterTest extends InstrumentationTestCase {
 
     }
 
-    @SmallTest
+    @Test
     public void testFailedQuoteRetrieval() throws Exception {
         BehaviorDelegate<QuoteOfTheDayRestService> delegate = mockRetrofit.create(QuoteOfTheDayRestService.class);
         MockFailedQODService mockQodService = new MockFailedQODService(delegate);
